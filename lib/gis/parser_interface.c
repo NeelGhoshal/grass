@@ -217,7 +217,7 @@ void G__usage_xml(void)
                     fprintf(stdout, "\t\t\t<item order=\"%d\">", i);
                     print_escaped_for_xml(stdout, s);
                     fprintf(stdout, "</item>\n");
-                    s = strtok(NULL, ",");
+                    s = strtok_r(NULL, ",", &saveptr);
                 }
                 fprintf(stdout, "\t\t</keydesc>\n");
                 G_free(top);
