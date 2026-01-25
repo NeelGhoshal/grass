@@ -232,7 +232,7 @@ void G__usage_xml(void)
                 fprintf(stdout, "\t\t<gisprompt ");
                 for (i = 0; s != NULL && atts[i] != NULL; i++) {
                     fprintf(stdout, "%s=\"%s\" ", atts[i], s);
-                    s = strtok(NULL, ",");
+                    s = strtok_r(NULL, ",", &saveptr);
                 }
                 fprintf(stdout, "/>\n");
                 G_free(top);
