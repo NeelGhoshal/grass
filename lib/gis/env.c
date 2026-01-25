@@ -550,7 +550,10 @@ const char *G_get_env_name(int n)
     read_env(G_VAR_GISRC);
     if (n >= 0)
         for (i = 0; i < st->env.count; i++)
-            if (st->env.binds[i].name && *st->env.binds[i].name && (n-- == 0))
+            if (st->env.binds[i].name && *st->env.binds[i].name && (n == 0))
+                return st->env.binds[i].name;
+            else
+                n--;
                 return st->env.binds[i].name;
     return NULL;
 }
