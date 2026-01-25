@@ -227,7 +227,8 @@ void G__usage_xml(void)
                 const char *atts[] = {"age", "element", "prompt", NULL};
                 top = G_calloc(strlen(opt->gisprompt) + 1, 1);
                 strcpy(top, opt->gisprompt);
-                s = strtok(top, ",");
+                char *saveptr;
+                s = strtok_r(top, ",", &saveptr);
                 fprintf(stdout, "\t\t<gisprompt ");
                 for (i = 0; s != NULL && atts[i] != NULL; i++) {
                     fprintf(stdout, "%s=\"%s\" ", atts[i], s);
