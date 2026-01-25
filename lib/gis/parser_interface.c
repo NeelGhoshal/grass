@@ -210,7 +210,9 @@ void G__usage_xml(void)
                 fprintf(stdout, "\t\t<keydesc>\n");
                 top = G_calloc(strlen(opt->key_desc) + 1, 1);
                 strcpy(top, opt->key_desc);
-                s = strtok(top, ",");
+                char *saveptr;
+                s = strtok_r(top, ",", &saveptr);
+
                 for (i = 1; s != NULL; i++) {
                     fprintf(stdout, "\t\t\t<item order=\"%d\">", i);
                     print_escaped_for_xml(stdout, s);
