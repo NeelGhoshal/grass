@@ -1811,7 +1811,7 @@ const char *get_renamed_option(const char *key)
     const char *pgm, *key_new;
     char *pgm_key;
 
-    if (!st->renamed_options) {
+    if (!st || !st->renamed_options) {
         /* read renamed options from file (renamed_options) */
         char path[GPATH_MAX];
 
