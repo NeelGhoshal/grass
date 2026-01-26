@@ -871,10 +871,11 @@ static void wps_print_literal_input_output(
         /* Check for range values */
         if (datatype && (strcmp(datatype, "integer") == 0 ||
                          strcmp(datatype, "float") == 0)) {
-            str = strtok((char *)choices[0], "-");
+            char *saveptr = NULL;                
+            str = strtok_r((char *)choices[0], "-", &saveptr);
             if (str != NULL) {
                 snprintf(range[0], 24, "%s", str);
-                str = strtok(NULL, "-");
+                str = strtok_r(NULL, "-", &saveptr);
                 if (str != NULL) {
                     snprintf(range[1], 24, "%s", str);
                     type = TYPE_RANGE;
