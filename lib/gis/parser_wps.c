@@ -304,11 +304,12 @@ void G__wps_print_process_description(void)
             if (opt->key_desc) {
                 top = G_calloc(strlen(opt->key_desc) + 1, 1);
                 strcpy(top, opt->key_desc);
-                s = strtok(top, ",");
+                char *saveptr = NULL;
+                s = strtok_r(top, ",", &saveptr);
                 /* Count comma's */
                 for (i = 0; s != NULL; i++) {
                     num_tuples++;
-                    s = strtok(NULL, ",");
+                    s = strtok_r(NULL, ",", &saveptr);
                 }
                 if (num_tuples > 1)
                     is_tuple = 1;
