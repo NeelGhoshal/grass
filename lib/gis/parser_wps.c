@@ -481,7 +481,8 @@ void G__wps_print_process_description(void)
                 const char *atts[] = {"age", "element", "prompt", NULL};
                 top = G_calloc(strlen(opt->gisprompt) + 1, 1);
                 strcpy(top, opt->gisprompt);
-                s = strtok(top, ",");
+                char *saveptr = NULL;
+                s = strtok_r(top, ",", &saveptr);
                 for (i = 0; s != NULL && atts[i] != NULL; i++) {
 
                     char *token = G_store(s);
@@ -507,7 +508,7 @@ void G__wps_print_process_description(void)
                     if (strcmp(token, "file") == 0) {
                         data_type = TYPE_PLAIN_TEXT;
                     }
-                    s = strtok(NULL, ",");
+                    s = strtok_r(NULL, ",", &saveptr);
                     G_free(token);
                 }
                 G_free(top);
