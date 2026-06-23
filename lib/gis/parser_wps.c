@@ -294,7 +294,7 @@ void G__wps_print_process_description(void)
                     if (strcmp(token, "file") == 0) {
                         data_type = TYPE_PLAIN_TEXT;
                     }
-                    s = strtok(NULL, ",");
+                    s = strtok_r(NULL, ",", &saveptr);
                     G_free(token);
                 }
                 G_free(top);
